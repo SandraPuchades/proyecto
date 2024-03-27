@@ -14,13 +14,13 @@ body, html {
 section{
     background-color: rgba(255, 255, 255, 0.617);
     text-align: center;
-    width: 300px;
+    width: 400px;
     padding-top: 80px;
     padding-bottom: 80px;
     padding-left: 20px;
     padding-right: 20px;
     margin: auto;
-    margin-right: 50px;
+    margin-right: 80px;
     border: 2px solid black;
     border-radius: 20px;
 }

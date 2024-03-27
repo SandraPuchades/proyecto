@@ -8,16 +8,17 @@
 </head>
 <body>
     <main>
-        <form action="">
+        <form method='POST' action="{{route('iniciar-sesion')}}">
+        @csrf
             <section id="login">
                 <h2>Log in</h2>
                 <div>
-                    <label for="usu">email o usuario</label>
-                    <input type="text" name="usu" id="usu">
+                    <label for="email">email o usuario</label>
+                    <input type="email" name="email" id="email" required>
                 </div>
                 <div>
-                    <label for="contrasenyausu">Contraseña</label>
-                    <input type="password" name="contrasenyausu" id="contrasenyausu" required>
+                    <label for="password">Contraseña</label>
+                    <input type="password" name="password" id="password" required>
                 </div>
                 <button type="submit">LOGIN</button>
             </section>

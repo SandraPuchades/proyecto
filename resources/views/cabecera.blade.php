@@ -8,7 +8,11 @@
 </head>
 <body>
     <header>
-        <h1>CHIM</h1>
+        <h1>@auth
+            {{Auth::user('name')}}
+        @endauth</h1>
+
+        <a href="{{route('login')}}">logout</a>
     </header>
 </body>
 </html>
