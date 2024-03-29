@@ -10,28 +10,45 @@
     <main>
         <form method='POST' action="{{route('validar-registro')}}">
         @csrf
-            <section id="singup">
+            <section id="login">
                 <h2>Sing up</h2>
-                <label for="name">Full Name</label>
+                <label for="name">User Name</label>
                 <input type="text" name="name" id="name">
+
+                <label for="fullname">Full Name</label>
+                <input type="text" name="fullname" id="fullname">
+
                 <label for="emal">Email</label>
-                <input type="text" name="email" id="email">
+                <input type="email" name="email" id="email">
+
                 <label for="contrasenya">Contraseña</label>
-                <input type="password" name="contrasenya" id="contrasenya" required>
-                <label for="contrasenya2">Confirmar Contraseña</label>
-                <input type="password" name="contrasenya2" id="contrasenya2" required>
+                <input type="password" name="password" id="password" required>
+
+                <label for="confirmpassword">Confirmar Contraseña</label>
+                <input type="password" name="confirmpassword" id="confirmpassword" required>
 
                 <button>NEXT</button>
 
                 <label for="">Fecha de nacimiento</label>
-                <input type="date" name="" id="">
+                <input type="date" name="date" id="">
+
                 <label for="">Alguna operación</label>
                 <label for="">Si</label>
-                <input type="radio" name="operacion" id="">
+                <input type="radio" name="operacion" value="Si" id="">
                 <label for="">No</label>
-                <input type="radio" name="operacion" id="">
+                <input type="radio" name="operacion" value="No" id="">
+
+                <label for="">Problemas de respiración</label>
+                <label for="">Si</label>
+                <input type="radio" name="problems" value="Si" id="">
+                <label for="">No</label>
+                <input type="radio" name="problems" value="No" id="">
+
+                <label for="name">Donde fué la operación</label>
+                <input type="text" name="whereoperation" id="whereoperation">
+
                 <label for="">Descripción soblre la operación</label>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <textarea name="description" id="" cols="30" rows="10"></textarea>
 
                 <button type="submit">SINGUP</button>
             </section>

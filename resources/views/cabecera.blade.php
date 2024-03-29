@@ -9,7 +9,7 @@
 <body>
     <header>
         <h1>@auth
-            {{Auth::user('name')}}
+            {{Auth::user()->name}}
         @endauth</h1>
 
         <a href="{{route('login')}}">logout</a>

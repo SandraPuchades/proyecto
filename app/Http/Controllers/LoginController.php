@@ -19,14 +19,24 @@ class LoginController extends Controller
         $user = new User();
 
         $user-> name = $request->name;
+        $user-> fullname = $request->fullname;
         $user-> email = $request->email;
         $user-> password = Hash::make($request->password);
+        $user-> confirmpassword = Hash::make($request->confirmpassword);
+        $user-> date = $request->date;
+        $user-> operacion = $request->operacion;
+        $user-> problems = $request->problems;
+        $user-> whereoperation = $request->whereoperation;
+        $user-> description = $request->description;
 
-        $user->save();
+        if( $request->password ===  $request->confirmpassword){
+            $user->save();
+            Auth::login($user);
 
-        Auth::login($user);
+            return redirect(route('principal'));
+        }
+        return 'error';
 
-        return redirect(route('principal'));
     }
 
     public function login(Request $request){
