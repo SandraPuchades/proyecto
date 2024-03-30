@@ -9,28 +9,90 @@ body, html {
     background-image: url(../imagenes/login7.png);
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     filter: blur();
+}
+
+h1{
+    display: none;
+}
+
+main{
+    width: 100%;
 }
 
 form{
     background-color: transparent;
     text-align: center;
-    width: 400px;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    padding-left: 20px;
-    padding-right: 20px;
+    width: 30%;
+    padding-bottom: 40px;
+    padding-top: 40px;
     margin: auto;
-    margin-right: 80px;
     border: 2px solid white;
     border-radius: 20px;
 }
 
-#custom-checkbox {
+#registrar{
+    display: none;
+}
+
+#cambiar {
     width: 100px;
     border-radius: 20px;
     height: 20px;
     background-color: #84c2e8;
-    display: inline-block;
+    display: block;
+    text-align: center;
+    align-content: center;
     cursor: pointer;
+}
+
+h2{
+    display: inline;
+    margin-left: 20px;
+}
+
+#elegir{
+    margin-bottom: 15px;
+}
+
+#tipo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    margin: auto;
+    width: 30%;
+    margin-bottom: 50px;
+}
+
+input{
+    margin-bottom: 30px;
+    padding: 5px;
+}
+
+button{
+    margin-bottom: 20px;
+}
+
+#registrar2{
+    display: none;
+}
+
+#registrar1{
+    display: block;
+}
+
+.girar{
+    animation: rotar 8s ease-in;
+}
+
+@keyframes rotar {
+    from{
+        transform: rotateY('0deg');
+    }
+    to{
+        transform: rotateY('180deg');
+    }
 }

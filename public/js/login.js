@@ -1,16 +1,20 @@
 document.addEventListener('DOMContentLoaded', function () {
-    let moveLabel = document.querySelector('div');
+    let cambiar = document.getElementById('cambiar');
     let login = document.getElementById('login');
+    let registrar = document.getElementById('registrar');
+    let formularioActual = 'login';
 
-    moveLabel.addEventListener('click', function () {
-        let currentPosition = login.style.transform;
-        if (currentPosition === 'rotateY(180deg)') {
-            login.style.transform = 'rotateY(0)';
+    cambiar.addEventListener('click', function () {
+        if (formularioActual === 'registrar') {
             login.style.display = 'block';
-            loadPageContent('login')
+            registrar.style.display = 'none';
+            formularioActual= 'login';
+            login.classList.add('girar');
         } else {
-            login.style.transform = 'rotateY(180deg)';
-            loadPageContent('registrar')
+            login.style.display = 'none';
+            registrar.style.display = 'block';
+            formularioActual= 'registrar';
+            registrar.classList.add('girar');
         }
     });
 

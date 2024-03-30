@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="js/login.js"></script>
     <title>TeamSports</title>
 </head>
 <body>
     <main>
         <form method='POST' action="{{route('validar-registro')}}">
         @csrf
-            <section id="login">
+            <section id="registrar">
                 <h2>Sing up</h2>
                 <label for="name">User Name</label>
                 <input type="text" name="name" id="name">
