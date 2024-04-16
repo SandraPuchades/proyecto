@@ -20,14 +20,13 @@ class User extends Authenticatable
     public $timestamps = false;
 
     protected $fillable = [
-        'name',
+        'user_name',
         'fullname',
         'email',
         'password',
-        'confirmpassword',
-        'date',
-        'operacion',
-        'problems',
+        'confirm_password',
+        'date_birth',
+        'operations',
         'whereoperation',
         'description',
     ];
@@ -39,7 +38,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'confirmpassword',
+        'confirm_password',
         'remember_token',
     ];
 
@@ -50,6 +49,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'password' => 'hashed',
-        'confirmpassword' => 'hashed',
+        'confirm_password' => 'hashed',
     ];
 }

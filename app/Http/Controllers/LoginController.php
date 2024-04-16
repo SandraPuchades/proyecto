@@ -18,18 +18,17 @@ class LoginController extends Controller
 
         $user = new User();
 
-        $user-> name = $request->name;
+        $user-> user_name = $request->user_name;
         $user-> fullname = $request->fullname;
         $user-> email = $request->email;
         $user-> password = Hash::make($request->password);
-        $user-> confirmpassword = Hash::make($request->confirmpassword);
-        $user-> date = $request->date;
-        $user-> operacion = $request->operacion;
-        $user-> problems = $request->problems;
+        $user-> confirm_password = Hash::make($request->confirm_password);
+        $user-> date_birth = $request->date_birth;
+        $user-> operations = $request->operations;
         $user-> whereoperation = $request->whereoperation;
         $user-> description = $request->description;
 
-        if( $request->password ===  $request->confirmpassword){
+        if( $request->password === $request->confirm_password){
             $user->save();
             Auth::login($user);
 
@@ -46,9 +45,9 @@ class LoginController extends Controller
         $credentials = [
             "email" => $request->email,
             "password" => $request->password,
-            //"active" => true
         ];
 
+        //Si la contraseña y el email coinciden en la vase de datos
         if(Auth::attempt($credentials)){
 
             $request->session()->regenerate();
@@ -56,7 +55,7 @@ class LoginController extends Controller
             return redirect()->intended(route('principal'));
 
         }else{
-            return redirect(route('login'));
+            return redirect()->route('login')->with('error','Contraseña o email incorrectos');
         }
 
     }
