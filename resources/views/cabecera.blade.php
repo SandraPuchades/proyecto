@@ -19,6 +19,5 @@
         </div>
 
     </header>
-    @yield('cabecera')
 </body>
 </html>

@@ -32,15 +32,13 @@ class LoginController extends Controller
             $user->save();
             Auth::login($user);
 
-            return redirect(route('principal'));
+            return redirect(route('mostrar'));
         }
         return 'error';
 
     }
 
     public function login(Request $request){
-
-        //Validación
 
         $credentials = [
             "email" => $request->email,
@@ -52,7 +50,7 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->intended(route('principal'));
+            return redirect()->intended(route('mostrar'));
 
         }else{
             return redirect()->route('login')->with('error','Contraseña o email incorrectos');

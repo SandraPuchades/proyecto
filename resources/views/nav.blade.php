@@ -6,9 +6,10 @@
     <title>TeamSports</title>
 </head>
 <body>
-<footer>
-        <div>Sandra Puchades</div>
-        <div>IES José Rodrigo Botet</div>
-    </footer>
+<nav>
+        <a href="{{route('mostrar')}}">FORO</a>
+        <a href="{{route('calendario')}}">CALENDARIO</a>
+    </nav>
+
 </body>
 </html>
