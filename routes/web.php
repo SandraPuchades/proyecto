@@ -15,12 +15,16 @@ Route::post('/validar-registro', [LoginController::class, 'register'])->name('va
 Route::post('/iniciar-sesion', [LoginController::class, 'login'])->name('iniciar-sesion');
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
-Route::get('/foro',[EnviarController::class,'mostrar'])->middleware('auth')->name('mostrar');
+Route::get('/foro/{id?}',[EnviarController::class,'mostrar'])->middleware('auth')->name('mostrar');
 
 //Solo puede acceder los registrados.
 Route::view('/foro-page', "pages.foro")->middleware('auth')->name('foro');
 
-Route::post('/foro',[EnviarController::class,'enviar'] )->middleware('auth')->name('enviar');
+Route::post('/foro/{id?}',[EnviarController::class,'mostrar'] )->middleware('auth')->name('enviar');
+Route::post('/hilo/{id?}', [EnviarController::class,'enviar'])->middleware('auth')->name('enviarMensajeHilo');
+Route::get('/hilo/{id?}', [EnviarController::class,'mostarPadre'])->middleware('auth')->name('hilo');
+
+Route::view('/hilo-pages', "pages.hilo")->middleware('auth')->name('hiloPage');
 
 
 Route::view('/calendario-page', "pages.calendario")->middleware('auth')->name('calendario');

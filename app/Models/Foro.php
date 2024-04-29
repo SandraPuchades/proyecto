@@ -11,11 +11,14 @@ class Foro extends Model
     private $text;
     private $time;
 
-    public static function mostrarMensajes(){
-        $mensaje=Foro::all();
+    public static function mostrarMensajes($id){
+        $mensaje=Foro::where('id_padre', $id)->get();
         return $mensaje;
     }
-
+    public static function mostrarMensajePadre($id){
+        $mensaje=Foro::where('id', $id)->get();
+        return $mensaje;
+    }
     public function getUser_name() {
         $this->user_name = $user_name;
     }

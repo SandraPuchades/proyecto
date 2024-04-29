@@ -17,7 +17,7 @@
                 <p id="usuario-mensaje">{{$mensaje->user_name}}</p>
                 <p id="texto">{{$mensaje->text}}</p>
                 <div id="time">
-                    <a href="#">Responder</a>
+                    <a href="{{route('hilo', $mensaje->id)}}">Responder</a>
                     <p>{{$mensaje->time}}</p>
                 </div>
                 <hr>
@@ -25,7 +25,7 @@
             @endforeach
         </div>
         @auth
-        <form id="mensaje" method="post" action="{{route('enviar')}}">
+        <form id="mensaje" method="post" action="{{route('enviarMensajeHilo')}}">
         @csrf
             <textarea name="text" id="text"></textarea>
             <button type="submit">Enviar</button>
