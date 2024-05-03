@@ -3,7 +3,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-class Foro extends Model
+class Eventos extends Model
 {
     protected $table = 'foro';
     public $timestamps = false;
@@ -12,10 +12,6 @@ class Foro extends Model
     private $time;
     private $id_padre;
 
-    public static function mostrarMensajes($id){
-        $mensaje=Foro::where('id_padre', $id)->get();
-        return $mensaje;
-    }
     public static function mostrarMensajePadre($id){
         $mensaje=Foro::where('id', $id)->get();
         return $mensaje;

@@ -1,26 +1,24 @@
 <?php
 namespace App\Http\Controllers;
     use App\Models\Foro;
-    use Illuminate\Support\Facades\Auth;
     use DateTime;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Auth;
 
 class EnviarController extends Controller{
 
     public function enviar(Request $request, $id = null){
-
+        $user = Auth::user()->user_name;
         $text= $request->input('text');
-        $usuario = Auth::user()->user_name;
         $time = new DateTime();
         $timeFormat = $time->format('G:i');
+        $foro = new Foro();
 
-        $mensaje = new Foro();
-
-        $mensaje->user_name = $usuario;
-        $mensaje->text = $text;
-        $mensaje->time = $timeFormat;
-        $mensaje->id_padre = $id;
-        $mensaje->save();
+        $foro->user_name = $user;
+        $foro->text = $text;
+        $foro->time = $timeFormat;
+        $foro->id_padre = $id;
+        $foro->save();
 
         if ($id === null) {
             return redirect()->route('mostrar', $id);

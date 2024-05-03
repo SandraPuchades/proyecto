@@ -4,7 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-
 return new class extends Migration
 {
     /**
@@ -12,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('foro', function (Blueprint $table) {
+        Schema::create('eventos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('user_name');
-            $table->string('text');
+            $table->string('categoria');
+            $table->string('description');
             $table->time('time');
-            $table->bigInteger('id_padre')->nullable();
-        });
+            $table->bigInteger('id_usuario')->unsigned()->nullable();
+            $table->foreign('id_usuario')->references('id')->on('users');
+        }, ['engine' => 'InnoDB']);
     }
 
     /**
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('foro');
+        Schema::dropIfExists('eventos');
     }
 };
