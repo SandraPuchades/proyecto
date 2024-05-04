@@ -3,8 +3,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-class Foro extends Model
-{
+class Foro extends Model {
     protected $table = 'foro';
     public $timestamps = false;
     private $user_name;
@@ -16,6 +15,7 @@ class Foro extends Model
         $mensaje=Foro::where('id_padre', $id)->get();
         return $mensaje;
     }
+
     public static function mostrarMensajePadre($id){
         $mensaje=Foro::where('id', $id)->get();
         return $mensaje;
@@ -28,6 +28,7 @@ class Foro extends Model
     public function setUser_name($user_name) {
         $this->user_name = $user_name;
     }
+
     public function getText() {
         return $this->text;
     }
@@ -35,11 +36,20 @@ class Foro extends Model
     public function setText($text) {
         $this->text = $text;
     }
+
     public function getTime() {
         return $this->time;
     }
 
     public function setTime($time) {
         $this->time = $time;
+    }
+
+    public function getId_padre() {
+        return $this->id_padre;
+    }
+
+    public function setId_padre($id_padre) {
+        $this->id_padre = $id_padre;
     }
 }

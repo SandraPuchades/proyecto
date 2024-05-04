@@ -18,8 +18,32 @@
     <nav>
         @include('nav')
     </nav>
-    <main id="calendario">
-
+    <main>
+        <div id="calendario"></div>
+        <div id="formulario">
+            <form action="" method="post">
+                <div>
+                <label for="Category">Categoria:</label>
+                <input type="text" name="category" id="">
+                </div>
+                <div>
+                <label for="Category">descripción:</label>
+                <input type="text" name="description" id="">
+                </div>
+                <div>
+                <label for="Category">Hora:</label>
+                <input type="time" name="time" id="">
+                </div>
+                <div>
+                <label for="Category">Fecha:</label>
+                <input type="date" name="date" id="">
+                </div>
+                <div>
+                <button type="submit">Aceptar</button>
+                <button>Cancelar</button>
+                </div>
+            </form>
+        </div>
     </main>
     <footer>
         @include('footer')

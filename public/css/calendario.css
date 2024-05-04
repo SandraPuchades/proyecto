@@ -4,11 +4,43 @@ body{
 }
 
 main{
-    width:100%;
-    height: 980px;
-    padding: 0;
-    margin: 0;
-    margin-top: 50px;
+    width: 100%;
+    height: 1200px;
+}
+
+#calendario {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+#formulario{
+    position: absolute;
+    width: 600px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background-color: white;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+form{
+    margin: auto;
+    display: block;
+}
+form div {
+    display: flex;
+    width: 100%;
+}
+
+#fondoFiltro {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 table{

@@ -2,10 +2,13 @@
 namespace App\Http\Controllers;
     use App\Models\Calendario;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Auth;
+
 class CalendarioController extends Controller{
 
     function mostarCalendario(Request $request){
 
+        $user = Auth::user()->id;
         $mes = $request->input('month');
         $anyo = $request->input('year');
         $diaInicioMes = $request->input('semana');
@@ -14,7 +17,7 @@ class CalendarioController extends Controller{
 
         $calendario = new Calendario();
 
-        $mesCalendario= $calendario->mesCalendario($mes,$numDiasMesActual,$diaInicioMes, $anyo);
+        $mesCalendario= $calendario->mesCalendario($mes, $numDiasMesActual, $diaInicioMes, $anyo,  $user);
 
         return response()->json($mesCalendario);
     }

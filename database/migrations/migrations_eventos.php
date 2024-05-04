@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('eventos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('categoria');
+            $table->string('category');
             $table->string('description');
             $table->time('time');
+            $table->date('date');
             $table->bigInteger('id_usuario')->unsigned()->nullable();
             $table->foreign('id_usuario')->references('id')->on('users');
         }, ['engine' => 'InnoDB']);

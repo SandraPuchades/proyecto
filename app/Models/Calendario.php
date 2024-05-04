@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Model;
+    use Carbon\Carbon;
 
 class Calendario extends Model{
+    protected $table = 'eventos';
+    public $timestamps = false;
 
-
-    function mesCalendario($mes,$numeroDias,$diaSemanal, $anyo){
+    function mesCalendario($mes, $numeroDias, $diaSemanal, $anyo,  $user = 1){
         $nombresMeses = [
             1 =>'Enero',
             2 =>'Febrero',
@@ -22,36 +24,79 @@ class Calendario extends Model{
             12 => 'Diciembre'
         ];
         $nombreMes = $nombresMeses[$mes];
-        $mes='';
-        $mes.= "<div id='fecha'><button id='menos'><</button><h1>".$nombreMes."  ".$anyo."
-        </h1><button id='mas'>></button></div>";
+        $infoMes='';
+        $infoMes.= "<div id='fecha'><button id='menos'><</button><h1>".$nombreMes."  ".$anyo."
+        </h1><button id='mas'>></button> <div id='anyadir' >+</div></div>";
 
-        $mes.= "<table>";
+        $infoMes.= "<table>";
 
-        $mes.= "<tr>";
+        $infoMes.= "<tr>";
         $arraySemana = ["L", "M", "X", "J", "V", "S", "D"];
         for($i=0; $i<7; $i++){
             $diaSemana=$arraySemana[$i];
-            $mes.= "<td id='dia'> $diaSemana</td>";
+            $infoMes.= "<td id='dia'> $diaSemana </td>";
         }
 
-        $mes.= "</tr>";
+        $infoMes.= "</tr>";
 
-        $mes.= "<tr>";
+        $infoMes.= "<tr>";
         for($i=1; $i<$diaSemanal; $i++){
-            $mes.= "<td></td>";
+            $infoMes.= "<td></td>";
         }
         for($i=1; $i<=$numeroDias; $i++){
-            $mes.= "<td>$i</td>";
+            $infoMes.= "<td>$i";
+
+            $fecha = Carbon::create($anyo, $mes, $i);
+
+            $arrayEventosPrivados = $this->mostrarEventoPrivado($fecha, $user);
+            foreach ($arrayEventosPrivados as $eventoDiaPrivado) {
+                $infoMes .= "<br>$eventoDiaPrivado->category";
+            }
+
+            $arrayEventosPublicos = $this->mostrarEventoPublico($fecha);
+            foreach ($arrayEventosPublicos as $eventoDia) {
+                $infoMes .= "<br>$eventoDia->category";
+            }
+
+
+            $infoMes .="</td>";
+
             if (!(($i+$diaSemanal-1) % 7)) {
-                $mes.= "</tr><tr>";
+                $infoMes.= "</tr><tr>";
             }
         }
-        $mes.= "</tr></table><br>";
+        $infoMes.= "</tr></table><br>";
 
 
 
 
-        return $mes;
+        return $infoMes;
+    }
+
+    public function mostrarEventoPublico($fecha){
+        try {
+            $fechaStr = $fecha->toDateString();
+            $eventos = Calendario::whereDate('date', $fechaStr)->get();
+            $eventosTotal = $eventos->where('id_usuario', null);
+            return $eventosTotal;
+
+        } catch (\Exception $e) {
+            \Log::error('Error al buscar eventos: ' . $e->getMessage());
+            return [];
+        }
+    }
+
+    public function mostrarEventoPrivado($fecha, $user){
+        try {
+            $fechaStr = $fecha->toDateString();
+
+            $eventos = Calendario::whereDate('date', $fechaStr)->get();
+            $eventosTotal = $eventos->where('id_usuario', $user);
+            return $eventosTotal;
+
+        } catch (\Exception $e) {
+            \Log::error('Error al buscar eventos: ' . $e->getMessage());
+            return [];
+        }
     }
 }
