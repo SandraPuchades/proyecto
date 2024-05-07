@@ -9,6 +9,7 @@ class EnviarController extends Controller{
 
     public function enviar(Request $request, $id = null){
         $user = Auth::user()->user_name;
+        $categoryId = $request->input('category');
         $text= $request->input('text');
         $time = new DateTime();
         $timeFormat = $time->format('G:i');
@@ -28,9 +29,10 @@ class EnviarController extends Controller{
     }
 
     public function mostrar($id = null){
+        $arraycategorys = EventoController::getDatesCategory();
         $arrayMensajes = Foro::mostrarMensajes($id);
 
-        return view('pages.foro', compact('arrayMensajes'));
+        return view('pages.foro', compact('arrayMensajes','arraycategorys'));
     }
 
     public function mostarPadre($id){

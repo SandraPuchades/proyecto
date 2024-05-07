@@ -17,8 +17,10 @@ return new class extends Migration
             $table->string('user_name');
             $table->string('text');
             $table->time('time');
+            $table->bigInteger('category')->unsigned();
             $table->bigInteger('id_padre')->nullable();
-        });
+            $table->foreign('category')->references('id')->on('eventos');
+        }, ['engine' => 'InnoDB']);
     }
 
     /**

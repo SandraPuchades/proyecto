@@ -4,7 +4,7 @@ namespace App\Models;
     use Illuminate\Database\Eloquent\Model;
     use Carbon\Carbon;
 
-class Calendario extends Model{
+class Evento extends Model{
     protected $table = 'eventos';
     public $timestamps = false;
 
@@ -76,7 +76,7 @@ class Calendario extends Model{
     public function mostrarEventoPublico($fecha){
         try {
             $fechaStr = $fecha->toDateString();
-            $eventos = Calendario::whereDate('date', $fechaStr)->get();
+            $eventos = Evento::whereDate('date', $fechaStr)->get();
             $eventosTotal = $eventos->where('id_usuario', null);
             return $eventosTotal;
 
@@ -90,7 +90,7 @@ class Calendario extends Model{
         try {
             $fechaStr = $fecha->toDateString();
 
-            $eventos = Calendario::whereDate('date', $fechaStr)->get();
+            $eventos = Evento::whereDate('date', $fechaStr)->get();
             $eventosTotal = $eventos->where('id_usuario', $user);
             return $eventosTotal;
 
@@ -98,5 +98,9 @@ class Calendario extends Model{
             \Log::error('Error al buscar eventos: ' . $e->getMessage());
             return [];
         }
+    }
+    public function categorys(){
+        $datos = Evento::pluck('category', 'id');
+        return $datos;
     }
 }

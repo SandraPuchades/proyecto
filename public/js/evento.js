@@ -26,6 +26,8 @@ $.ajax({
         let mas = document.getElementById('mas');
         let anyadir = document.getElementById('anyadir');
         let formulario = document.getElementById('formulario');
+        let cancelar = document.getElementById('cancelar');
+
         formulario.style.display='none';
 
         menos.addEventListener('click', function () {
@@ -55,6 +57,10 @@ $.ajax({
         anyadir.addEventListener('click', function () {
             formulario.style.display='block';
             document.body.style.backgroundColor = 'rgba(128, 128, 128, 0.5)';
+        }),
+
+        cancelar.addEventListener('click', function () {
+            formulario.style.display='none';
         })
 
     },

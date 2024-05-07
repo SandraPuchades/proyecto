@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/chat-style.css">
+    <script src="js/foro.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>TeamSports</title>
 </head>
@@ -27,6 +28,12 @@
         @auth
         <form id="mensaje" method="post" action="{{route('enviarMensajeHilo')}}">
         @csrf
+            <select name="idCategory" id="category">
+                <option value="">Selecciona una categoría</option>
+                @foreach ( $arraycategorys as  $id => $category)
+                    <option value="{{$id}}">{{$category}}</option>
+                @endforeach
+            </select>
             <textarea name="text" id="text"></textarea>
             <button type="submit">Enviar</button>
         </form>

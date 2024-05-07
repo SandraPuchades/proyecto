@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\EnviarController;
-use App\Http\Controllers\CalendarioController;
+use App\Http\Controllers\EventoController;
 
 
 Route::view('/login', "pages.login")->name('login');
@@ -26,9 +26,10 @@ Route::get('/hilo/{id?}', [EnviarController::class,'mostarPadre'])->middleware('
 
 Route::view('/hilo-pages', "pages.hilo")->middleware('auth')->name('hiloPage');
 
-
-Route::view('/calendario-page', "pages.calendario")->middleware('auth')->name('calendario');
-Route::get('/mostarCalendario',[CalendarioController::class,'mostarCalendario'])->middleware('auth')->name('mostarCalendario');
+Route::get('/calendario-', [EventoController::class,'mostarCalendario'])->middleware('auth')->name('calendario-page');
+Route::view('/calendario', "pages.evento")->middleware('auth')->name('calendario');
+Route::get('/mostarCalendario',[EventoController::class,'mostarCalendario'])->middleware('auth')->name('mostarCalendario');
+Route::post('/calendario-page', [EventoController::class,'crearEvento'])->middleware('auth')->name('crearEvento');
 
 
 
