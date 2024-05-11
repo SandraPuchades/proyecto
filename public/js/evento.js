@@ -6,14 +6,10 @@ let diasemana = primerDiaMes.getDay();
 
 obtenerCalendario(month,year,diasemana);
 
-function crearEvento(){
-
-}
-
 function obtenerCalendario(month,year,diasemana) {
 $.ajax({
     type: 'GET',
-    url: '/mostarCalendario',
+    url: '/calendario-pages',
     data: {
         month: month,
         year: year,
@@ -61,6 +57,7 @@ $.ajax({
 
         cancelar.addEventListener('click', function () {
             formulario.style.display='none';
+            document.body.style.backgroundColor = 'white'
         })
 
     },

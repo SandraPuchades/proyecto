@@ -9,6 +9,7 @@
 <nav>
         <a href="{{route('mostrar')}}">FORO</a>
         <a href="{{route('calendario')}}">CALENDARIO</a>
+        <a href="{{route('grupo')}}">GRUPOS</a>
     </nav>
 
 </body>

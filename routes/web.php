@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\EnviarController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\GruposController;
 
 
 Route::view('/login', "pages.login")->name('login');
@@ -26,11 +27,13 @@ Route::get('/hilo/{id?}', [EnviarController::class,'mostarPadre'])->middleware('
 
 Route::view('/hilo-pages', "pages.hilo")->middleware('auth')->name('hiloPage');
 
-Route::get('/calendario-', [EventoController::class,'mostarCalendario'])->middleware('auth')->name('calendario-page');
+Route::get('/calendario-pages', [EventoController::class,'mostrarCalendario'])->middleware('auth')->name('calendario-pages');
 Route::view('/calendario', "pages.evento")->middleware('auth')->name('calendario');
-Route::get('/mostarCalendario',[EventoController::class,'mostarCalendario'])->middleware('auth')->name('mostarCalendario');
 Route::post('/calendario-page', [EventoController::class,'crearEvento'])->middleware('auth')->name('crearEvento');
 
+Route::get('/grupo-controller', [GruposController::class,'mostrarGruposUsuario'])->middleware('auth')->name('grupo');
+Route::view('/grupos', "pages.grupo")->middleware('auth')->name('grupos');
+Route::post('/unirse-grupo', [GruposController::class,'unirseGrupo'])->middleware('auth')->name('unirseGrupo');
 
 
 ?>

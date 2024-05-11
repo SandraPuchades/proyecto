@@ -28,7 +28,7 @@
         @auth
         <form id="mensaje" method="post" action="{{route('enviarMensajeHilo')}}">
         @csrf
-            <select name="idCategory" id="category">
+            <select name="category" id="category">
                 <option value="">Selecciona una categoría</option>
                 @foreach ( $arraycategorys as  $id => $category)
                     <option value="{{$id}}">{{$category}}</option>

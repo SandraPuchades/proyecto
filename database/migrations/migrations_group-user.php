@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Evento;
+use App\Models\Grupo;
 use Carbon\Carbon;
 return new class extends Migration
 {
@@ -12,14 +12,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-            if (!Schema::hasTable('eventos')) {
-            Schema::create('eventos', function (Blueprint $table) {
+            if (!Schema::hasTable('group-user')) {
+            Schema::create('group-user', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->string('category');
-                $table->string('description');
-                $table->time('time');
-                $table->date('date');
-                $table->bigInteger('id_usuario')->unsigned()->nullable();
+                $table->bigInteger('id_grupo')->unsigned();
+                $table->bigInteger('id_usuario')->unsigned();
+                $table->foreign('id_grupo')->references('id')->on('grupos');
                 $table->foreign('id_usuario')->references('id')->on('users');
             }, ['engine' => 'InnoDB']);
         }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('eventos');
+        Schema::dropIfExists('group-user');
     }
 };

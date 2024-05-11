@@ -6,18 +6,22 @@ namespace App\Http\Controllers;
 
 class EventoController extends Controller{
 
-    function mostarCalendario(Request $request){
+    function mostrarCalendario(Request $request){
 
         $user = Auth::user()->id;
-        $mes = $request->input('month');
-        $anyo = $request->input('year');
+        $month = $request->input('month');
+        $year = $request->input('year');
         $diaInicioMes = $request->input('semana');
-
-        $numDiasMesActual = cal_days_in_month(CAL_GREGORIAN, $mes, $anyo);
+        if(!$month && !$year){
+            $currentDate = now();
+            $year = $currentDate->year;
+            $month = $currentDate->month;
+        }
+        $numDiasMesActual = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
         $evento = new Evento();
 
-        $mesCalendario= $evento->mesCalendario($mes, $numDiasMesActual, $diaInicioMes, $anyo,  $user);
+        $mesCalendario= $evento->mesCalendario($month, $numDiasMesActual, $diaInicioMes, $year,  $user);
 
         return response()->json($mesCalendario);
     }
@@ -41,11 +45,8 @@ class EventoController extends Controller{
         $evento->date = $date;
         $evento->id_usuario = $user;
         $evento->save();
-        $currentDate = now();
-        $year = $currentDate->year;
-        $month = $currentDate->month;
 
-        return redirect()->route('mostarCalendario', ['year' => $year, 'month' => $month]);
+        return redirect()->route('calendario');
     }
 }
 

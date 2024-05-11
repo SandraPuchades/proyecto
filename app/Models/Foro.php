@@ -10,6 +10,7 @@ class Foro extends Model {
     private $text;
     private $time;
     private $id_padre;
+    private $category;
 
     public static function mostrarMensajes($id){
         $mensaje=Foro::where('id_padre', $id)->get();
@@ -51,5 +52,13 @@ class Foro extends Model {
 
     public function setId_padre($id_padre) {
         $this->id_padre = $id_padre;
+    }
+
+    public function getCategory() {
+        return $this->category;
+    }
+
+    public function setCategory($category) {
+        $this->category = $category;
     }
 }

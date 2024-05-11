@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/chat-style.css">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/evento.js"></script>
@@ -22,6 +21,7 @@
         <div id="calendario"></div>
         <div id="formulario">
             <form action="{{route('crearEvento')}}" method="post">
+            @csrf
                 <div>
                     <label for="categoria">Categoria:</label>
                     <input type="text" name="category" id="category">

@@ -19,6 +19,7 @@ class EnviarController extends Controller{
         $foro->text = $text;
         $foro->time = $timeFormat;
         $foro->id_padre = $id;
+        $foro->category = $categoryId;
         $foro->save();
 
         if ($id === null) {
