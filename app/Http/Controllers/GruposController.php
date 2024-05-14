@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
     use App\Models\Grupo;
     use App\Models\Grupo_user;
+    use App\Models\User;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Http\Request;
 
@@ -23,17 +24,28 @@ class GruposController extends Controller{
     function mostrarGruposUsuario(){
         $user = Auth::user()->id;
 
-    // Obtener todos los grupos a los que pertenece el usuario
     $grupoUser = Grupo_user::where('id_usuario', $user)->get();
 
-    // Crear un array para almacenar los IDs de los grupos
     $idGrupos = $grupoUser->pluck('id_grupo');
 
-    // Obtener los detalles de los grupos a partir de los IDs
     $arrayGrupos = Grupo::whereIn('id', $idGrupos)->get();
+    $grupo = Grupo::find($idGrupos);
 
+    $arrayUsuarios = [];
+
+    foreach ($idGrupos as $groupId) {
+        $usuariosIds = Grupo_user::where('id_grupo', $groupId)->pluck('id_usuario');
+
+        foreach ($usuariosIds as $userId) {
+            $usuario = User::find($userId);
+            if ($usuario) {
+                $arrayUsuarios[$groupId][] = $usuario->user_name;
+            }
+        }
+    }
     $arrayGroupSelect = Grupo::mostrarGrupos();
-    return view('pages.grupo', compact('arrayGrupos','arrayGroupSelect'));
+
+    return view('pages.grupo', compact('arrayGrupos','arrayGroupSelect', 'arrayUsuarios'));
     }
 }
 

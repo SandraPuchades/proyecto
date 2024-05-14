@@ -29,21 +29,21 @@ return new class extends Migration
 
             $grupo = new Grupo();
             $grupo->grupo = 'Nadar';
-            $grupo->horario = 'Miercoles';
+            $grupo->horario = 'Martes';
             $grupo->time = '17:00';
 
             $grupo->save();
 
             $grupo = new Grupo();
             $grupo->grupo = 'Andar';
-            $grupo->horario = 'Miercoles y Jueves';
+            $grupo->horario = 'Martes';
             $grupo->time = '20:00';
 
             $grupo->save();
 
             $grupo = new Grupo();
             $grupo->grupo = 'Kunfu';
-            $grupo->horario = 'Martes';
+            $grupo->horario = 'Jueves';
             $grupo->time = '18:00';
 
             $grupo->save();

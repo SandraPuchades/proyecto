@@ -31,8 +31,15 @@
         </div>
         <div id="infogrupos">
             @foreach ($arrayGrupos as $grupo)
-                <div id="mensaje">
-                    <p id="usuario-mensaje">{{$grupo->grupo}}</p> <!-- Ajusta el campo según tu estructura de datos -->
+                <div>
+                    <p>{{$grupo->grupo}}</p>
+                    @if(isset($arrayUsuarios[$grupo->id]))
+                        @foreach ($arrayUsuarios[$grupo->id] as $nombreUsuario)
+                            <div>
+                                <p>{{$nombreUsuario}}</p>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             @endforeach
         </div>

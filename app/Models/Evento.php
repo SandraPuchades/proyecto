@@ -1,14 +1,22 @@
 <?php
 
 namespace App\Models;
-    use Illuminate\Database\Eloquent\Model;
-    use Carbon\Carbon;
 
-class Evento extends Model{
+use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\App;
+use App\Models\Grupo;
+use App\Models\Grupo_user; // Se importa la clase Grupo_user
+use Illuminate\Database\Eloquent\Collection; // Se importa la clase Collection para el tipo de retorno
+
+class Evento extends Model
+{
     protected $table = 'eventos';
     public $timestamps = false;
 
-    function mesCalendario($mes, $numeroDias, $diaSemanal, $anyo,  $user = 1){
+    public function mesCalendario($mes, $numeroDias, $diaInicioMes, $anyo, $user)
+    {
+        App::setLocale('es');
         $nombresMeses = [
             1 =>'Enero',
             2 =>'Febrero',
@@ -32,75 +40,81 @@ class Evento extends Model{
 
         $infoMes.= "<tr>";
         $arraySemana = ["L", "M", "X", "J", "V", "S", "D"];
-        for($i=0; $i<7; $i++){
-            $diaSemana=$arraySemana[$i];
+        foreach ($arraySemana as $diaSemana) {
             $infoMes.= "<td id='dia'> $diaSemana </td>";
         }
-
         $infoMes.= "</tr>";
 
         $infoMes.= "<tr>";
-        for($i=1; $i<$diaSemanal; $i++){
+        for ($i = 1; $i < $diaInicioMes; $i++) {
             $infoMes.= "<td></td>";
         }
-        for($i=1; $i<=$numeroDias; $i++){
+        for ($i = 1; $i <= $numeroDias; $i++) {
             $infoMes.= "<td>$i";
 
             $fecha = Carbon::create($anyo, $mes, $i);
 
-            $arrayEventosPrivados = $this->mostrarEventoPrivado($fecha, $user);
-            foreach ($arrayEventosPrivados as $eventoDiaPrivado) {
-                $infoMes .= "<br>$eventoDiaPrivado->category";
+            $diaDeLaSemana = $fecha->dayOfWeek;
+
+            $arrayEventosGrupo = $this->mostrarEventoGrupo($diaDeLaSemana, $user);
+            foreach ($arrayEventosGrupo as $eventoDiaGrupo) {
+                $infoMes .= "<br>$eventoDiaGrupo->grupo";
             }
+
 
             $arrayEventosPublicos = $this->mostrarEventoPublico($fecha);
             foreach ($arrayEventosPublicos as $eventoDia) {
                 $infoMes .= "<br>$eventoDia->category";
             }
 
-
             $infoMes .="</td>";
 
-            if (!(($i+$diaSemanal-1) % 7)) {
+            if (!(($i + $diaInicioMes - 1) % 7)) {
                 $infoMes.= "</tr><tr>";
             }
         }
         $infoMes.= "</tr></table><br>";
 
-
-
-
         return $infoMes;
     }
 
-    public function mostrarEventoPublico($fecha){
+    public function mostrarEventoGrupo($diaSemana, $usuario)
+    {
+
         try {
-            $fechaStr = $fecha->toDateString();
-            $eventos = Evento::whereDate('date', $fechaStr)->get();
-            $eventosTotal = $eventos->where('id_usuario', null);
-            return $eventosTotal;
+            $diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            $diaSemanaStr = $diasSemana[$diaSemana];
+
+            $gruposUsuario = Grupo_user::where('id_usuario', $usuario)->pluck('id_grupo');
+
+            $gruposEnDia = Grupo::whereIn('id', $gruposUsuario)->where('horario', $diaSemanaStr)->get();
+
+            return $gruposEnDia;
 
         } catch (\Exception $e) {
             \Log::error('Error al buscar eventos: ' . $e->getMessage());
-            return [];
+            return new Collection();
         }
     }
 
-    public function mostrarEventoPrivado($fecha, $user){
+    public function mostrarEventoPublico($fecha)
+    {
         try {
             $fechaStr = $fecha->toDateString();
 
             $eventos = Evento::whereDate('date', $fechaStr)->get();
-            $eventosTotal = $eventos->where('id_usuario', $user);
-            return $eventosTotal;
+            return $eventos;
 
         } catch (\Exception $e) {
             \Log::error('Error al buscar eventos: ' . $e->getMessage());
-            return [];
+            return new Collection();
         }
     }
-    public function categorys(){
+
+    public function categorys()
+    {
         $datos = Evento::pluck('category', 'id');
         return $datos;
     }
 }
+?>
