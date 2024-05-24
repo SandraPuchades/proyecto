@@ -26,16 +26,18 @@
             @endforeach
         </div>
         @auth
-        <form id="mensaje" method="post" action="{{route('enviarMensajeHilo')}}">
+        <form  method="post" action="{{route('enviarMensajeHilo')}}">
         @csrf
-            <select name="category" id="category">
+        <div id="formulario">
+            <select name="category" id="categoria">
                 <option value="">Selecciona una categoría</option>
-                @foreach ( $arraycategorys as  $id => $category)
-                    <option value="{{$id}}">{{$category}}</option>
+                @foreach ( $arraycategorys as $category)
+                    <option value="{{$category}}">{{$category}}</option>
                 @endforeach
             </select>
             <textarea name="text" id="text"></textarea>
-            <button type="submit">Enviar</button>
+        </div>
+            <button type="submit" id="submit"><img src="/imagenes/enviar.png" id="enviar" alt=""></button>
         </form>
         @endauth
     </main>

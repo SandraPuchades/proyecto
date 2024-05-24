@@ -8,16 +8,14 @@
 </head>
 <body>
     <header>
-        <h1>TeamSports</h1>
+        <h1 id="title">TeamSports</h1>
         <div id="usuario">
-            <h2>@auth
-            {{Auth::user()->user_name}}
-            @endauth</h2>
-
-
-            <a href="{{route('login')}}"><img src="/imagenes/exit.png" alt=""></a>
+            <h2>@auth {{ Auth::user()->user_name }} @endauth</h2>
+            @auth
+                <img src="{{ asset('imagenes/' . Auth::user()->image_path) }}" alt="img-usuario" id="imagen">
+            @endauth
+            <a href="{{ route('login') }}"><img src="/imagenes/exit.png" alt=""></a>
         </div>
-
     </header>
 </body>
 </html>

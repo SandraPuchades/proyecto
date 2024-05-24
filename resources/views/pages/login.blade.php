@@ -42,7 +42,7 @@
         </section>
 
         <section id="registrar">
-            <form method='POST' action="{{route('validar-registro')}}" id="form-registrar">
+            <form method='POST' action="{{route('validar-registro')}}" enctype="multipart/form-data"  id="form-registrar">
             @csrf
                 <h3>Sing up</h3>
                 <article id="registrar1">
@@ -87,8 +87,8 @@
 
                 <article id="registrar3">
 
-                    <label for="name">Donde fué la operación</label>
-                    <input type="text" name="whereoperation" id="whereoperation">
+                    <label for="name">Imagen</label>
+                    <input type="file" name="img" id="">
 
                     <label for="">Descripción soblre la operación</label>
                     <textarea name="description" id="" cols="30" rows="10"></textarea>

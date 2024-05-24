@@ -1,7 +1,62 @@
+body{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    font-size: 2rem;
+}
+
 #newGrup{
     display: inline;
     border: 2px solid black;
 }
+
 main{
-    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#newgrupo{
+    text-align: center;
+    margin-top: 20px;
+    border: 2px solid black;
+    width: 16rem;
+    background-color: rgb(230, 230, 230);
+    border-radius: 7px;
+}
+
+#gruposselect{
+    width: 12%;
+    margin-top: 2%;
+    height: 2%;
+    font-size: 1rem;
+}
+
+#infogrupos{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#grupo{
+    border: 2px solid black;
+    margin-bottom: 20px;
+    width: 95%;
+}
+
+#nombregrupo{
+    margin: 0;
+    margin-left: 10px;
+    background-color: beige;
+}
+
+#usuarios{
+    margin-left: 10px;
+}
+
+#enlacesusuarios{
+    margin-bottom: 10px;
 }

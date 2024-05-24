@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
     use DateTime;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
+    use App\Models\Grupo;
 
 class EnviarController extends Controller{
 
     public function enviar(Request $request, $id = null){
         $user = Auth::user()->user_name;
-        $categoryId = $request->input('category');
+        $groupName = $request->input('category');
         $text= $request->input('text');
         $time = new DateTime();
         $timeFormat = $time->format('G:i');
@@ -19,7 +20,7 @@ class EnviarController extends Controller{
         $foro->text = $text;
         $foro->time = $timeFormat;
         $foro->id_padre = $id;
-        $foro->category = $categoryId;
+        $foro->category = $groupName;
         $foro->save();
 
         if ($id === null) {
@@ -30,7 +31,7 @@ class EnviarController extends Controller{
     }
 
     public function mostrar($id = null){
-        $arraycategorys = EventoController::getDatesCategory();
+        $arraycategorys = Grupo::mostrarGrupos();
         $arrayMensajes = Foro::mostrarMensajes($id);
 
         return view('pages.foro', compact('arrayMensajes','arraycategorys'));

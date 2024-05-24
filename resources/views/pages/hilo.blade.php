@@ -38,6 +38,7 @@
         <form id="mensaje" method="post" action="{{route('enviarMensajeHilo', $mensajePadre->id)}}">
 
         @csrf
+        <input type="hidden" name="category" value="{{$mensajePadre->category}}">
             <textarea name="text" id="text"></textarea>
             <button type="submit">Enviar</button>
         </form>

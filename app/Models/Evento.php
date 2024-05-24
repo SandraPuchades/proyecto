@@ -47,10 +47,10 @@ class Evento extends Model
 
         $infoMes.= "<tr>";
         for ($i = 1; $i < $diaInicioMes; $i++) {
-            $infoMes.= "<td></td>";
+            $infoMes.= "<td id='sinnum'></td>";
         }
         for ($i = 1; $i <= $numeroDias; $i++) {
-            $infoMes.= "<td>$i";
+            $infoMes.= "<td id='num'>$i";
 
             $fecha = Carbon::create($anyo, $mes, $i);
 
@@ -58,13 +58,21 @@ class Evento extends Model
 
             $arrayEventosGrupo = $this->mostrarEventoGrupo($diaDeLaSemana, $user);
             foreach ($arrayEventosGrupo as $eventoDiaGrupo) {
-                $infoMes .= "<br>$eventoDiaGrupo->grupo";
+                $infoMes .="<div class='events'>";
+                $infoMes .= "<p>$eventoDiaGrupo->grupo</p>";
+                $infoMes .= "<p>$eventoDiaGrupo->time</p>";
+                $infoMes .="</div>";
+                $infoMes.="<hr>";
             }
 
 
             $arrayEventosPublicos = $this->mostrarEventoPublico($fecha);
             foreach ($arrayEventosPublicos as $eventoDia) {
-                $infoMes .= "<br>$eventoDia->category";
+                $infoMes .="<div class='events'>";
+                $infoMes .= "<p>$eventoDia->category</p>";
+                $infoMes .= "<p>$eventoDia->time</p>";
+                $infoMes .="</div>";
+                $infoMes.="<hr>";
             }
 
             $infoMes .="</td>";

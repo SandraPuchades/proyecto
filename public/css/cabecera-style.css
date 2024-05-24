@@ -10,17 +10,19 @@ header{
     justify-content: space-between;
     margin: 0;
     width: 100%;
-    background-color: aquamarine;
+    background-color: rgb(69, 183, 145);
 }
-h1{
+#title{
     margin: 0;
     margin-left: 40px;
+    color: white;
 }
 #usuario{
     align-items: center;
     text-align: right;
     display: flex;
     margin-right: 40px;
+    color: white;
 }
 
 h2{
@@ -29,6 +31,8 @@ h2{
     align-items: center;
 }
 
-h2::after{
-    content: url(../imagenes/usuario.png);
+#imagen{
+    border-radius: 80px;
+    width: 50px;
+    margin-right: 20px;
 }

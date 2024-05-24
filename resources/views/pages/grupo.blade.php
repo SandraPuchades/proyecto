@@ -31,12 +31,12 @@
         </div>
         <div id="infogrupos">
             @foreach ($arrayGrupos as $grupo)
-                <div>
-                    <p>{{$grupo->grupo}}</p>
+                <div id="grupo">
+                    <p id="nombregrupo">{{$grupo->grupo}}</p>
                     @if(isset($arrayUsuarios[$grupo->id]))
                         @foreach ($arrayUsuarios[$grupo->id] as $nombreUsuario)
-                            <div>
-                                <p>{{$nombreUsuario}}</p>
+                            <div id="enlacesusuarios">
+                                <a id="usuarios" href="{{route('user-name', ['nombre' => $nombreUsuario])}}">{{$nombreUsuario}}</a>
                             </div>
                         @endforeach
                     @endif

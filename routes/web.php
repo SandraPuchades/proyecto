@@ -5,12 +5,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\EnviarController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\GruposController;
-
+use App\Http\Controllers\UsuariosController;
 
 Route::view('/login', "pages.login")->name('login');
-
-
-
 
 Route::post('/validar-registro', [LoginController::class, 'register'])->name('validar-registro');
 Route::post('/iniciar-sesion', [LoginController::class, 'login'])->name('iniciar-sesion');
@@ -35,5 +32,6 @@ Route::get('/grupo-controller', [GruposController::class,'mostrarGruposUsuario']
 Route::view('/grupos', "pages.grupo")->middleware('auth')->name('grupos');
 Route::post('/unirse-grupo', [GruposController::class,'unirseGrupo'])->middleware('auth')->name('unirseGrupo');
 
-
+Route::get('/user/{nombre}', [UsuariosController::class,'getDatosUsuario'])->middleware('auth')->name('user-name');
+Route::view('/user', "pages.user")->middleware('auth')->name('user');
 ?>
