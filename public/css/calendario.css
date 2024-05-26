@@ -26,6 +26,7 @@ main {
 }
 #formulario{
     position: absolute;
+    display: flex;
     width: 600px;
     top: 50%;
     left: 50%;
@@ -33,20 +34,25 @@ main {
     z-index: 1;
     background-color: white;
     border-radius: 8px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+}
 
+label{
+    margin-right: 20px;
 }
 
 form{
+    width: 50%;
     margin: auto;
-    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
 }
 
 form div {
     display: flex;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 #fondoFiltro {
@@ -96,6 +102,7 @@ button{
     font-size: 25px;
     background-color: transparent;
     border: none;
+    justify-content: end;
 }
 
 td{
@@ -118,4 +125,22 @@ td{
 #anyadir{
     font-size: 2rem;
     font-weight: 500;
+}
+
+#aceptar:hover{
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+#cancelar:hover{
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+}
+
+#crear{
+    font-size: 30px;
+    margin-left: 20px;
 }

@@ -19,6 +19,7 @@
     <main>
         <div id="calendario"></div>
         <div id="formulario">
+            <h3 id="crear">Crea tu evento</h3>
             <form action="{{route('crearEvento')}}" method="post">
             @csrf
                 <div>
@@ -38,7 +39,7 @@
                     <input type="date" name="date" id="date">
                 </div>
                 <div>
-                    <button type="submit">Aceptar</button>
+                    <button type="submit" id="aceptar">Aceptar</button>
                     <button type="button" id="cancelar">Cancelar</button>
                 </div>
             </form>

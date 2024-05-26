@@ -31,7 +31,9 @@ Route::post('/calendario-page', [EventoController::class,'crearEvento'])->middle
 Route::get('/grupo-controller', [GruposController::class,'mostrarGruposUsuario'])->middleware('auth')->name('grupo');
 Route::view('/grupos', "pages.grupo")->middleware('auth')->name('grupos');
 Route::post('/unirse-grupo', [GruposController::class,'unirseGrupo'])->middleware('auth')->name('unirseGrupo');
+Route::get('/grupo-delete', [GruposController::class,'elimiarUsuarioGrupo'])->middleware('auth')->name('user-delete');
 
 Route::get('/user/{nombre}', [UsuariosController::class,'getDatosUsuario'])->middleware('auth')->name('user-name');
 Route::view('/user', "pages.user")->middleware('auth')->name('user');
+
 ?>
