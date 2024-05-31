@@ -12,9 +12,19 @@ body, html {
     background-repeat: no-repeat;
     filter: blur();
 }
-
+main {
+    flex: 1;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    color: white;
+}
 h1{
-    display: none;
+    font-size: 4rem;
+    text-align: center;
+    color: white;
 }
 
 #titulo{
@@ -31,32 +41,28 @@ h3{
     margin-top: 25px;
 }
 
-main{
-    width: 100%;
-}
-
 button{
     color: white;
     border: 2px solid white;
     background: transparent;
     border-radius: 5px;
     margin-top: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 5px 20px;
 }
 
 #login, #registrar{
+    font-size: 1.5rem;
     background-color: transparent;
     text-align: center;
-    width: 23%;
-    height: 250px;
-    padding-bottom: 40px;
-    padding-top: 40px;
+    width: 500px;
+    padding: 40px 0;
     margin: auto;
     border: 2px solid white;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #registrar{
@@ -76,7 +82,7 @@ button{
 
 img{
     width: 30px;
-    transform: translate(-50px, 0px) rotateZ(-20deg);
+    transform: translate(-50px, -5px) rotateZ(-40deg);
     background-color: white;
     border-radius: 50px;
 }
@@ -101,61 +107,49 @@ h2{
     text-align: center;
     flex-direction: column;
     margin: auto;
-    width: 30%;
+    width: 100%;
     margin-bottom: 50px;
 }
 
 input{
     margin-bottom: 30px;
-    padding-bottom: 7px;
-    padding-top: 7px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 7px 15px;
 }
 
+#back, #back2, #next, #next2 {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    width: 70px;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 #back{
-    background-color: transparent;
-    border: 2px solid white;
-    color: white;
-
+    margin-right: 20px;
+}
+.errorLogin{
+    color: red;
 }
 
-#back2{
-    background-color: transparent;
-    border: 2px solid white;
-    color: white;
-}
-#next{
+.buttons{
+    display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: transparent;
-    border: 2px solid white;
-    color: white;
-    width: 10%;
-
+    width: 100%;
+    font-size: 1rem;
 }
 
-#next2{
-    background-color: transparent;
-    border: 2px solid white;
-    color: white;
-}
-button{
-    margin-bottom: 20px;
-}
-
-#registrar2{
+#registrar2, #registrar3 {
     display: none;
 }
 
 #registrar1{
     display: flex;
     flex-direction: column;
-}
-
-#registrar3{
-    display: none;
 }
 
 .girar{
@@ -192,10 +186,10 @@ button{
 
 @keyframes girar {
     0%{
-        transform: translate(50px, 0px) rotateZ(35deg);
+        transform: translate(50px, -5px) rotateZ(35deg);
     }
     100%{
-        transform: translate(-50px, 0px) rotateZ(-35deg);
+        transform: translate(-50px, -5px) rotateZ(-35deg);
     }
 
 }
@@ -206,11 +200,16 @@ button{
 
 @keyframes girar2 {
     0%{
-        transform: translate(-50px, 0px) rotateZ(-35deg);
+        transform: translate(-50px, -5px) rotateZ(-35deg);
     }
     100%{
-        transform: translate(50px, 0px) rotateZ(35deg);
+        transform: translate(50px, -5px) rotateZ(35deg);
     }
 
 }
 
+@media (width <= 300px){
+    #login, #registrar {
+        width: 100%; /* Ajusta el ancho de los formularios */
+    }
+}

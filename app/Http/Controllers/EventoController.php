@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 
 class EventoController extends Controller{
 
+    //Mostrar calendario dependiendo del mes y año
     function mostrarCalendario(Request $request){
         $user = Auth::user()->id;
         $month = $request->input('month');
@@ -35,12 +36,14 @@ class EventoController extends Controller{
         return response()->json($mesCalendario);
     }
 
+    //Obtener las categorias de los eventos
     static function getDatesCategory(){
         $evento = new Evento();
         $arrayCategorys = $evento->categorys();
         return $arrayCategorys;
     }
 
+    //Crear un evento propio del usuario
     function crearEvento(Request $request){
         $user = Auth::user()->id;
         $evento = new Evento();

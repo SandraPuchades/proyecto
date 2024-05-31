@@ -8,3 +8,4 @@ class Usuario extends Model{
     public $timestamps = false;
 
 }
+?>

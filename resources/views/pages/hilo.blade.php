@@ -12,22 +12,21 @@
     @include('nav')
     <main>
         @foreach ( $arrayMensajePadre as $mensajePadre)
-        <div>
-                <div id="mensaje">
-                    <p id="usuario-mensaje">{{$mensajePadre->user_name}}</p>
-                    <p id="texto">{{$mensajePadre->text}}</p>
-                    <div id="time">
+        <div id="mesajepadre">
+                <div class="mensaje mensajeprincipal">
+                    <p class="usuario">{{$mensajePadre->user_name}}</p>
+                    <div class="time">
+                        <p class="texto">{{$mensajePadre->text}}</p>
                         <p>{{$mensajePadre->time}}</p>
                     </div>
-                    <hr>
                 </div>
         </div>
         <div id="foro">
             @foreach ( $arrayMensajes as $mensaje)
-                <div id="mensaje">
-                    <p id="usuario-mensaje">{{$mensaje->user_name}}</p>
-                    <p id="texto">{{$mensaje->text}}</p>
-                    <div id="time">
+                <div class="mensaje">
+                    <p class="usuario">{{$mensaje->user_name}}</p>
+                    <div class="time">
+                        <p class="texto">{{$mensaje->text}}</p>
                         <p>{{$mensaje->time}}</p>
                     </div>
                     <hr>
@@ -36,11 +35,12 @@
         </div>
         @auth
         <form id="mensaje" method="post" action="{{route('enviarMensajeHilo', $mensajePadre->id)}}">
-
+        <div id="formulario">
         @csrf
         <input type="hidden" name="category" value="{{$mensajePadre->category}}">
-            <textarea name="text" id="text"></textarea>
-            <button type="submit">Enviar</button>
+            <textarea name="text" id="text" required></textarea>
+        </div>
+            <button type="submit" id="submit"><img src="/imagenes/enviar.png" id="enviar" alt=""></button>
         </form>
         @endauth
         @endforeach

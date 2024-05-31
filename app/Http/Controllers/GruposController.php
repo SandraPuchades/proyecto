@@ -3,62 +3,46 @@ namespace App\Http\Controllers;
 
 use App\Models\Grupo;
 use App\Models\Grupo_user;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class GruposController extends Controller
 {
+    // Unirse al grupo que se elija
     function unirseGrupo(Request $request)
     {
         $user = Auth::user()->id;
         $idGroup = $request->input('grupos');
-        $grupoExistente = Grupo_user::where('id_usuario', $user)
-        ->where('id_grupo', $idGroup)
-        ->exists();
 
-        if ($grupoExistente) {
-            return $this->mostrarGruposUsuario();
+        // Verificar si el usuario ya está en el grupo
+        $grupoExistente = Grupo_user::mostrarGrupo($user);
+        if ($grupoExistente && $grupoExistente->id_grupo === $idGroup) {
+            return redirect()->back()->with('error', 'Ya estás en este grupo.');
         }
 
-        $grupo = new Grupo_user();
-        $grupo->id_usuario = $user;
-        $grupo->id_grupo = $idGroup;
-        $grupo->save();
+        Grupo_user::unirseGrupo($user, $idGroup);
 
         return $this->mostrarGruposUsuario();
     }
 
-    function elimiarUsuarioGrupo(){
+    // Eliminar el usuario dependiendo del id del grupo
+    function eliminarUsuarioGrupo(Request $request){
         $user = Auth::user()->id;
-        Grupo_user::where('id_usuario', $userId)->where('id_grupo', $grupoId)->delete();
-        return $this->mostrarGruposUsuario();
+        $grupoId = $request->input('grupoId');
+        Grupo::eliminarUsuarioGrupo($user, $grupoId);
+
+        return response()->json(['success' => true]);
     }
 
+    // Mostrar los grupos a los que se suscribe el usuario autenticado
     function mostrarGruposUsuario() {
         $user = Auth::user()->id;
-        $grupoUser = Grupo_user::where('id_usuario', $user)->get();
-        $idGrupos = $grupoUser->pluck('id_grupo');
-
-        $arrayGrupos = Grupo::whereIn('id', $idGrupos)->get();
-        $arrayUsuarios = [];
-
-        foreach ($idGrupos as $groupId) {
-            $usuariosIds = Grupo_user::where('id_grupo', $groupId)->pluck('id_usuario');
-
-            foreach ($usuariosIds as $userId) {
-                $usuario = User::find($userId);
-                if ($usuario) {
-                    $arrayUsuarios[$groupId][] = [
-                        'user_name' => $usuario->user_name,
-                        'image_path' => $usuario->image_path ?? 'usuario.jpg'
-                    ];
-                }
-            }
-        }
+        $arrayGrupos = Grupo::mostrarGruposUsuario($user);
+        $arrayUsuarios = Grupo_user::mostrarUsuariosGrupos($arrayGrupos);
 
         $arrayGroupSelect = Grupo::mostrarGrupos();
 
         return view('pages.grupo', compact('arrayGrupos', 'arrayGroupSelect', 'arrayUsuarios'));
     }
 }
+?>

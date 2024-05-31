@@ -18,7 +18,7 @@
         <div id="container">
             <div>
                 @auth
-                    <img src="{{ asset('imagenes/' . Auth::user()->image_path) }}" alt="img-usuario" id="imagenUsuario">
+                <img src="{{ asset('imagenes/' . $user->image_path) }}" alt="img-usuario" id="imagenUsuario">
                 @endauth
             </div>
             <div id="container-info">

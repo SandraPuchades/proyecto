@@ -9,15 +9,23 @@
     <title>TeamSports</title>
 </head>
 <body>
-    @include('cabecera')
-    @include('nav')
+<head>
+        @include('cabecera')
+    </head>
+    <nav>
+        @include('nav')
+    </nav>
     <main>
         <div id="foro">
             @foreach ( $arrayMensajes as $mensaje)
-            <div id="mensaje">
-                <p id="usuario-mensaje">{{$mensaje->user_name}}</p>
+            <div class="mensaje">
+                <div class="time">
+                    <p class="usuario-mensaje">{{$mensaje->user_name}}</p>
+                    <p id="texto">{{$mensaje->category}}</p>
+                </div>
                 <p id="texto">{{$mensaje->text}}</p>
-                <div id="time">
+
+                <div class="time">
                     <a href="{{route('hilo', $mensaje->id)}}">Responder</a>
                     <p>{{$mensaje->time}}</p>
                 </div>
@@ -29,19 +37,21 @@
         <form  method="post" action="{{route('enviarMensajeHilo')}}">
         @csrf
         <div id="formulario">
-            <select name="category" id="categoria">
+            <select name="category" id="categoria" required>
                 <option value="">Selecciona una categoría</option>
                 @foreach ( $arraycategorys as $category)
                     <option value="{{$category}}">{{$category}}</option>
                 @endforeach
             </select>
-            <textarea name="text" id="text"></textarea>
+            <textarea name="text" id="text" required></textarea>
         </div>
             <button type="submit" id="submit"><img src="/imagenes/enviar.png" id="enviar" alt=""></button>
         </form>
         @endauth
     </main>
-    @include('footer')
+    <footer>
+        @include('footer')
+    </footer>
 
 </body>
 </html>

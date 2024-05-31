@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use App\Models\Grupo;
-use App\Models\Grupo_user; // Se importa la clase Grupo_user
-use Illuminate\Database\Eloquent\Collection; // Se importa la clase Collection para el tipo de retorno
+use App\Models\Grupo_user;
+use Illuminate\Database\Eloquent\Collection;
 
 class Evento extends Model
 {
     protected $table = 'eventos';
     public $timestamps = false;
 
+    //Crear el calendiario con sus eventos y grupos suscritos por el usuario autenticado
     public function mesCalendario($mes, $numeroDias, $diaInicioMes, $anyo, $user)
     {
         App::setLocale('es');
@@ -72,6 +73,7 @@ class Evento extends Model
                 $infoMes .= "<p>$eventoDia->category</p>";
                 $infoMes .= "<p>$eventoDia->time</p>";
                 $infoMes .="</div>";
+                $infoMes .= "<p>$eventoDia->description</p>";
                 $infoMes.="<hr>";
             }
 
@@ -86,6 +88,7 @@ class Evento extends Model
         return $infoMes;
     }
 
+    //Mostrar los eventos de los grupos suscritos
     public function mostrarEventoGrupo($diaSemana, $usuario)
     {
 
@@ -105,6 +108,7 @@ class Evento extends Model
         }
     }
 
+    //Mostrar los eventos que crea el usuario
     public function mostrarEventoPublico($fecha)
     {
         try {
@@ -119,6 +123,7 @@ class Evento extends Model
         }
     }
 
+    //Obtener las categorías
     public function categorys()
     {
         $datos = Evento::pluck('category', 'id');

@@ -25,8 +25,8 @@
 
                 <h3 id="titulo">Log in</h3>
                 <div id="email">
-                    <label for="email">email</label>
-                    <input type="email" name="email" id="email" required>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email_login" required>
                 </div>
                 <div>
                     <label for="password">Contraseña</label>
@@ -58,13 +58,26 @@
                         <label for="emal">Email</label>
                         <input type="email" name="email" id="email">
                     </div>
-                    <div id="next">next</div>
+                    @if (session('register_error'))
+                        <div id="errorLogin">
+                            <p>Inserte otro usuario o email</p>
+                        </div>
+                    @endif
+                    @if (session('password_error'))
+                        <div id="errorLogin">
+                            <p>Las contraseñas no son identicas</p>
+                        </div>
+                    @endif
+
+                    <div class="buttons">
+                        <p id="next">Next</p>
+                    </div>
                 </article>
 
                 <article id="registrar2">
                     <div>
                         <label for="contrasenya">Contraseña</label>
-                        <input type="password" name="password" id="password" required>
+                        <input type="password" name="contrasenya" id="contrasenya" required>
                     </div>
                     <div>
                         <label for="confirm_password">Confirmar Contraseña</label>
@@ -72,27 +85,35 @@
                     </div>
                     <div>
                         <label for="">Fecha de nacimiento</label>
-                        <input type="date" name="date_birth" id="">
+                        <input type="date" name="date_birth">
+                    </div>
+                    <div class="buttons">
+                        <p id="back">Back</p>
+                        <p id="next2">Next</p>
+                    </div>
+
+                </article>
+
+                <article id="registrar3">
+                    <div>
+                        <label for="weight">Peso</label>
+                        <input type="text" name="weight" id="weight">
+                    </div>
+                    <div>
+                        <label for="name">Imagen</label>
+                        <input type="file" name="img">
                     </div>
                     <div>
                         <label for="">Alguna operación :</label>
                         <label for="">Si</label>
-                        <input type="radio" name="operations" value="Si" id="">
+                        <input type="radio" name="operations" value="Si">
                         <label for="">No</label>
-                        <input type="radio" name="operations" value="No" id="">
+                        <input type="radio" name="operations" value="No">
                     </div>
-                    <div id="back">back</div>
-                    <div id="next2">next</div>
-                </article>
 
-                <article id="registrar3">
-
-                    <label for="name">Imagen</label>
-                    <input type="file" name="img" id="">
-
-                    <label for="">Descripción soblre la operación</label>
-                    <textarea name="description" id="" cols="30" rows="10"></textarea>
-                    <div id="back2">back</div>
+                    <div class="buttons">
+                        <p id="back2">Back</p>
+                    </div>
                     <button type="submit">SINGUP</button>
                 </article>
             </form>

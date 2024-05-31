@@ -12,11 +12,12 @@ class Foro extends Model {
     private $id_padre;
     private $category;
 
+    //Mostrar los mensajes del padre
     public static function mostrarMensajes($id){
         $mensaje=Foro::where('id_padre', $id)->get();
         return $mensaje;
     }
-
+    //Mostrar los mensjaes dependiendo del id
     public static function mostrarMensajePadre($id){
         $mensaje=Foro::where('id', $id)->get();
         return $mensaje;
@@ -62,3 +63,4 @@ class Foro extends Model {
         $this->category = $category;
     }
 }
+?>

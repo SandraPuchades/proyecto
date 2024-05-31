@@ -7,6 +7,9 @@ use App\Models\User;
 
 return new class extends Migration
 {
+    /**
+     * Creacón de la migración con sus datos y usuario creado por defecto y user_name y email son unicos
+     */
     public function up(): void
     {
         if (!Schema::hasTable('users')) {
@@ -18,8 +21,8 @@ return new class extends Migration
                 $table->string('password');
                 $table->string('confirm_password');
                 $table->string('date_birth');
+                $table->string('weight');
                 $table->string('operations');
-                $table->string('description')->nullable();
                 $table->string('image_path')->nullable();
                 $table->timestamps();
             });
@@ -33,7 +36,7 @@ return new class extends Migration
             $user->confirm_password = bcrypt('root');
             $user->date_birth = '1990-01-01';
             $user->operations = 'si';
-            $user->description = '';
+            $user->weight = '50';
             $user->image_path = 'usuario.jpg';
             $user->save();
         }
@@ -44,3 +47,4 @@ return new class extends Migration
         Schema::dropIfExists('users');
     }
 };
+?>

@@ -7,8 +7,8 @@ use App\Models\Grupo;
 use Carbon\Carbon;
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
+   /**
+     * Creacón de la migración con sus datos y claves foraneas id_grupo y id_usuario
      */
     public function up(): void
     {
@@ -23,11 +23,9 @@ return new class extends Migration
         }
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('group-user');
     }
 };
+?>

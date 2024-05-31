@@ -8,6 +8,8 @@ namespace App\Http\Controllers;
 
 class EnviarController extends Controller{
 
+    // Enviar mesnaje para todos asingnadolo como nullo o se asigna el id
+    // del padre si es para contenstar un hilo
     public function enviar(Request $request, $id = null){
         $user = Auth::user()->user_name;
         $groupName = $request->input('category');
@@ -30,6 +32,7 @@ class EnviarController extends Controller{
         }
     }
 
+    //Mostrar los mesjaes y los selectores para elegir el grupo
     public function mostrar($id = null){
         $arraycategorys = Grupo::mostrarGrupos();
         $arrayMensajes = Foro::mostrarMensajes($id);
@@ -37,6 +40,7 @@ class EnviarController extends Controller{
         return view('pages.foro', compact('arrayMensajes','arraycategorys'));
     }
 
+    //Mostrar el mensaje padre y los demás mensajes relacionados con este
     public function mostarPadre($id){
         $arrayMensajePadre = Foro::mostrarMensajePadre($id);
         $arrayMensajes = Foro::mostrarMensajes($id);

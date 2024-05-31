@@ -8,7 +8,7 @@ use Carbon\Carbon;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Creacón de la migración con sus datos y grupos creados por defecto
      */
     public function up(): void
     {
@@ -47,14 +47,47 @@ return new class extends Migration
             $grupo->time = '18:00';
 
             $grupo->save();
+
+            $grupo = new Grupo();
+            $grupo->grupo = 'Fútbol';
+            $grupo->horario = 'Sabados';
+            $grupo->time = '9:00';
+
+            $grupo->save();
+
+            $grupo = new Grupo();
+            $grupo->grupo = 'Padel';
+            $grupo->horario = 'Lunes';
+            $grupo->time = '16:00';
+
+            $grupo->save();
+
+            $grupo = new Grupo();
+            $grupo->grupo = 'Triatlon';
+            $grupo->horario = 'Domingo';
+            $grupo->time = '17:00';
+
+            $grupo->save();
+
+            $grupo = new Grupo();
+            $grupo->grupo = 'Tenis';
+            $grupo->horario = 'Viernes';
+            $grupo->time = '15:00';
+
+            $grupo->save();
+
+            $grupo = new Grupo();
+            $grupo->grupo = 'Gimnasio';
+            $grupo->horario = 'Martes';
+            $grupo->time = '18:00';
+
+            $grupo->save();
         }
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('grupos');
     }
 };
+?>

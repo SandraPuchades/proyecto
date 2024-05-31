@@ -15,11 +15,13 @@
         @include('nav')
     </nav>
     <main>
-        <div id="newgrupo">Unirme a un grupo</div>
+        <div>
+            <p id="newgrupo">Unirme a un grupo</p>
+        </div>
         <div id="formulario">
             <form action="{{ route('unirseGrupo') }}" method="post">
                 @csrf
-                <select name="grupos" id="gruposselect">
+                <select name="grupos" id="gruposselect" required>
                     <option value="">Selecciona una categoría</option>
                     @foreach ($arrayGroupSelect as $id => $grupo)
                         <option value="{{ $id }}">{{ $grupo }}</option>
@@ -28,12 +30,12 @@
                 <button type="submit">Unirse</button>
             </form>
         </div>
-        <div id="infogrupos">
-        @foreach ($arrayGrupos as $grupo)
+            <div id="infogrupos">
+                @foreach ($arrayGrupos as $grupo)
                 <div class="grupo">
                     <div id="titulogrupo">
                         <p class="nombregrupo">{{ $grupo->grupo }}</p>
-                        <p id="eliminar">X</p>
+                        <p class="eliminar" groupId="{{ $grupo->id }}">X</p>
                     </div>
                     @if(isset($arrayUsuarios[$grupo->id]))
                         <div class="tablausuario">

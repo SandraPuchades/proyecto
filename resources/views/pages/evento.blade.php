@@ -24,7 +24,7 @@
             @csrf
                 <div>
                     <label for="categoria">Categoria:</label>
-                    <input type="text" name="category" id="category">
+                    <input type="text" name="category" id="category" required>
                 </div>
                 <div>
                     <label for="descripcion">descripción:</label>
@@ -32,11 +32,11 @@
                 </div>
                 <div>
                     <label for="hora">Hora:</label>
-                    <input type="time" name="time" id="time">
+                    <input type="time" name="time" id="time" required>
                 </div>
                 <div>
                     <label for="fecha">Fecha:</label>
-                    <input type="date" name="date" id="date">
+                    <input type="date" name="date" id="date" required>
                 </div>
                 <div>
                     <button type="submit" id="aceptar">Aceptar</button>

@@ -8,7 +8,7 @@ use Carbon\Carbon;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Creacón de la migración con sus datos con clave foranea id_usuario
      */
     public function up(): void
     {
@@ -16,7 +16,7 @@ return new class extends Migration
             Schema::create('eventos', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('category');
-                $table->string('description');
+                $table->string('description')->nullable();
                 $table->time('time');
                 $table->date('date');
                 $table->bigInteger('id_usuario')->unsigned()->nullable();
@@ -25,11 +25,9 @@ return new class extends Migration
         }
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('eventos');
     }
 };
+?>

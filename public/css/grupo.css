@@ -96,3 +96,9 @@ main{
 #titulogrupo p{
     margin: 0;
 }
+
+@media (max-width: 600px) {
+    .grupo {
+        width: 100%;
+    }
+}

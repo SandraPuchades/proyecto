@@ -10,7 +10,7 @@
     <header>
         <h1 id="title">TeamSports</h1>
         <div id="usuario">
-            <h2>@auth {{ Auth::user()->user_name }} @endauth</h2>
+            <a href="{{ route('usuario') }}">@auth {{ Auth::user()->user_name }} @endauth</a>
             @auth
                 <img src="{{ asset('imagenes/' . Auth::user()->image_path) }}" alt="img-usuario" id="imagen">
             @endauth

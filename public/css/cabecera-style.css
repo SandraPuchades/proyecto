@@ -4,6 +4,7 @@ html,body{
     margin: 0;
     padding: 0;
 }
+
 header{
     display: flex;
     align-items: center;
@@ -11,12 +12,16 @@ header{
     margin: 0;
     width: 100%;
     background-color: rgb(69, 183, 145);
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
+
 #title{
     margin: 0;
     margin-left: 40px;
     color: white;
 }
+
 #usuario{
     align-items: center;
     text-align: right;
@@ -35,4 +40,15 @@ h2{
     border-radius: 80px;
     width: 50px;
     margin-right: 20px;
+}
+
+#usuario a{
+    text-decoration: none;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    header {
+        display: block;
+    }
 }
