@@ -7,6 +7,7 @@ use App\Http\Controllers\EventoController;
 use App\Http\Controllers\GruposController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ModificarUserController;
 
 Route::view('/login', "pages.login")->name('login');
 
@@ -28,15 +29,20 @@ Route::view('/hilo-pages', "pages.hilo")->middleware('auth')->name('hiloPage');
 Route::get('/calendario-pages', [EventoController::class,'mostrarCalendario'])->middleware('auth')->name('calendario-pages');
 Route::view('/calendario', "pages.evento")->middleware('auth')->name('calendario');
 Route::post('/calendario-page', [EventoController::class,'crearEvento'])->middleware('auth')->name('crearEvento');
+Route::post('/eliminarEvento', [EventoController::class,'eliminarEvento'])->middleware('auth')->name('eliminarEvento');
+
 
 Route::get('/grupo-controller', [GruposController::class,'mostrarGruposUsuario'])->middleware('auth')->name('grupo');
 Route::view('/grupos', "pages.grupo")->middleware('auth')->name('grupos');
 Route::post('/unirse-grupo', [GruposController::class,'unirseGrupo'])->middleware('auth')->name('unirseGrupo');
-Route::post('/eliminarUsuarioGrupo', [GruposController::class,'elimiarUsuarioGrupo'])->middleware('auth')->name('eliminarUsuarioGrupo');
+Route::post('/eliminarUsuarioGrupo', [GruposController::class,'eliminarUsuarioGrupo'])->middleware('auth')->name('eliminarUsuarioGrupo');
 
 Route::get('/user/{nombre}', [UsuariosController::class,'getDatosUsuario'])->middleware('auth')->name('user-name');
 Route::view('/user', "pages.user")->middleware('auth')->name('user');
 
 Route::get('/usercontroller', [UserController::class,'mostrarUsuario'])->middleware('auth')->name('usuario');
 Route::view('/usuario', "pages.infouser")->middleware('auth')->name('viewusuario');
+
+Route::post('/modificarcontroller', [ModificarUserController::class,'modificarDatos'])->middleware('auth')->name('modificar');
+
 ?>

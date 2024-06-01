@@ -17,7 +17,14 @@ main{
     width: 95%;
     margin: auto;
 }
-
+.size{
+    text-align: center;
+    font-size: 1rem;
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
 #newgrupo{
     text-align: center;
     margin-top: 20px;
@@ -25,13 +32,6 @@ main{
     width: 16rem;
     background-color: rgb(230, 230, 230);
     border-radius: 7px;
-}
-
-#gruposselect{
-    width: 12%;
-    margin-top: 2%;
-    height: 2%;
-    font-size: 1rem;
 }
 
 #infogrupos{
@@ -95,6 +95,13 @@ main{
 
 #titulogrupo p{
     margin: 0;
+}
+
+#unirse{
+    font-size: 1rem;
+    width: 80px;
+    height: 30px;
+    border-radius: 10px;
 }
 
 @media (max-width: 600px) {

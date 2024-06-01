@@ -11,8 +11,8 @@ namespace App\Http\Controllers;
 
     //Obtener los datos de otro usuario
     public function getDatosUsuario($nombre){
-
-        $user = Usuario::where('user_name', $nombre)->first();
+        $userdb = new Usuario();
+        $user = $userdb->getDatosUsuario($nombre);
         return view('pages.user', compact('user'));
 
     }

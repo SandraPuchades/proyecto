@@ -14,7 +14,7 @@
         <section id="tipo">
             <div id="elegir">
                 <h2>Log In</h2>
-                <h2>Sing Up</h2>
+                <h2>Registrarse</h2>
             </div>
             <div for="cambiar" id="cambiar"><img src="imagenes/flecha.png" alt="flecha" id="img"></div>
         </section>
@@ -44,14 +44,14 @@
         <section id="registrar">
             <form method='POST' action="{{route('validar-registro')}}" enctype="multipart/form-data"  id="form-registrar">
             @csrf
-                <h3>Sing up</h3>
+                <h3>Registrarse</h3>
                 <article id="registrar1">
                     <div>
-                        <label for="user_name">User Name</label>
+                        <label for="user_name">Nombre usuario</label>
                         <input type="text" name="user_name" id="name">
                     </div>
                     <div>
-                        <label for="fullname">Full Name</label>
+                        <label for="fullname">Nombre completo</label>
                         <input type="text" name="fullname" id="fullname">
                     </div>
                     <div>
@@ -114,7 +114,7 @@
                     <div class="buttons">
                         <p id="back2">Back</p>
                     </div>
-                    <button type="submit">SINGUP</button>
+                    <button type="submit">Registrarse</button>
                 </article>
             </form>
         </section>

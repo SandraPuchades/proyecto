@@ -41,7 +41,6 @@ class GruposController extends Controller
         $arrayUsuarios = Grupo_user::mostrarUsuariosGrupos($arrayGrupos);
 
         $arrayGroupSelect = Grupo::mostrarGrupos();
-
         return view('pages.grupo', compact('arrayGrupos', 'arrayGroupSelect', 'arrayUsuarios'));
     }
 }

@@ -27,7 +27,7 @@
                     <input type="text" name="category" id="category" required>
                 </div>
                 <div>
-                    <label for="descripcion">descripción:</label>
+                    <label for="descripcion">Descripción:</label>
                     <input type="text" name="description" id="description">
                 </div>
                 <div>

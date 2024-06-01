@@ -27,7 +27,7 @@
 
                 <div class="time">
                     <a href="{{route('hilo', $mensaje->id)}}">Responder</a>
-                    <p>{{$mensaje->time}}</p>
+                    <p>{{ \Carbon\Carbon::parse($mensaje->time)->format('H:i') }}</p>
                 </div>
                 <hr>
             </div>

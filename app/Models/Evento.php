@@ -59,6 +59,7 @@ class Evento extends Model
 
             $arrayEventosGrupo = $this->mostrarEventoGrupo($diaDeLaSemana, $user);
             foreach ($arrayEventosGrupo as $eventoDiaGrupo) {
+                $eventoDiaGrupo->time = substr($eventoDiaGrupo->time, 0, 5);
                 $infoMes .="<div class='events'>";
                 $infoMes .= "<p>$eventoDiaGrupo->grupo</p>";
                 $infoMes .= "<p>$eventoDiaGrupo->time</p>";
@@ -69,6 +70,7 @@ class Evento extends Model
 
             $arrayEventosPublicos = $this->mostrarEventoPublico($fecha);
             foreach ($arrayEventosPublicos as $eventoDia) {
+                $eventoDia->time = substr($eventoDia->time, 0, 5);
                 $infoMes .="<div class='events'>";
                 $infoMes .= "<p>$eventoDia->category</p>";
                 $infoMes .= "<p>$eventoDia->time</p>";

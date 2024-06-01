@@ -32,7 +32,7 @@
                 </div>
                 <div class="info">
                     <p class="datos-personales">Fecha de nacimiento:</p>
-                    <p class="datos">{{ $user->date_birth }}</p>
+                    <p class="datos">{{ date('d-m-Y', strtotime($user->date_birth)) }}</p>
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@ class EnviarController extends Controller{
         $groupName = $request->input('category');
         $text= $request->input('text');
         $time = new DateTime();
-        $timeFormat = $time->format('G:i');
+        $timeFormat = $time->format('H:i');
         $foro = new Foro();
 
         $foro->user_name = $user;

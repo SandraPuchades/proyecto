@@ -21,13 +21,13 @@
         <div id="formulario">
             <form action="{{ route('unirseGrupo') }}" method="post">
                 @csrf
-                <select name="grupos" id="gruposselect" required>
+                <select  class="size" name="grupos" required>
                     <option value="">Selecciona una categoría</option>
                     @foreach ($arrayGroupSelect as $id => $grupo)
                         <option value="{{ $id }}">{{ $grupo }}</option>
                     @endforeach
                 </select>
-                <button type="submit">Unirse</button>
+                <button id="unirse" type="submit">Unirse</button>
             </form>
         </div>
             <div id="infogrupos">
