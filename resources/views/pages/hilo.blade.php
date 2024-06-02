@@ -13,13 +13,13 @@
     <main>
         @foreach ( $arrayMensajePadre as $mensajePadre)
         <div id="mesajepadre">
-                <div class="mensaje mensajeprincipal">
-                    <p class="usuario">{{$mensajePadre->user_name}}</p>
-                    <div class="time">
-                        <p class="texto">{{$mensajePadre->text}}</p>
-                        <p>{{$mensajePadre->time}}</p>
-                    </div>
+            <div class="mensaje mensajeprincipal">
+                <p class="usuario">{{$mensajePadre->user_name}}</p>
+                <div class="time">
+                    <p class="texto">{{$mensajePadre->text}}</p>
+                    <p>{{ \Carbon\Carbon::parse($mensajePadre->time)->format('H:i') }}</p>
                 </div>
+            </div>
         </div>
         <div id="foro">
             @foreach ( $arrayMensajes as $mensaje)
@@ -27,7 +27,7 @@
                     <p class="usuario">{{$mensaje->user_name}}</p>
                     <div class="time">
                         <p class="texto">{{$mensaje->text}}</p>
-                        <p>{{$mensaje->time}}</p>
+                        <p>{{ \Carbon\Carbon::parse($mensaje->time)->format('H:i') }}</p>
                     </div>
                     <hr>
                 </div>
