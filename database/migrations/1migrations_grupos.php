@@ -15,7 +15,7 @@ return new class extends Migration
             if (!Schema::hasTable('grupos')) {
             Schema::create('grupos', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->string('grupo');
+                $table->string('grupo')->unique();
                 $table->string('horario');
                 $table->time('time');
             });

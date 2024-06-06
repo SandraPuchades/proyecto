@@ -43,5 +43,29 @@ class GruposController extends Controller
         $arrayGroupSelect = Grupo::mostrarGrupos();
         return view('pages.grupo', compact('arrayGrupos', 'arrayGroupSelect', 'arrayUsuarios'));
     }
+    function crearGrupo(Request $request){
+        $deporte = $request->input('deporte');
+        $diasemana = $request->input('diasemana');
+        $time = $request->input('time');
+                                // Verificar si el grupo ya existe
+            $grupoExistente = Grupo::where('grupo', $deporte)->first();
+            if ($grupoExistente) {
+                return back()->withInput()->withErrors(['error' => 'El grupo ya existe.']);
+            }
+
+                                    // Validar que solo se pueda ingresar un día de la semana
+            if (str_word_count($diasemana) > 1) {
+                return back()->withInput()->withErrors(['error' => 'Solo se puede ingresar un día de la semana.']);
+            }
+
+            $grupo = new Grupo();
+            $grupo->grupo = $deporte;
+            $grupo->horario = $diasemana;
+            $grupo->time = $time;
+            $grupo->save();
+
+            return $this->mostrarGruposUsuario();
+
+    }
 }
 ?>

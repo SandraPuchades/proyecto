@@ -33,7 +33,15 @@ main{
     background-color: rgb(230, 230, 230);
     border-radius: 7px;
 }
-
+#creategroup{
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 10px;
+    border: 2px solid black;
+    width: 23rem;
+    background-color: rgb(230, 230, 230);
+    border-radius: 7px;
+}
 #infogrupos{
     display: flex;
     flex-wrap: wrap;
@@ -103,7 +111,62 @@ main{
     height: 30px;
     border-radius: 10px;
 }
+.buttons{
+    display: flex;
+}
 
+h3{
+    margin-left: 10px;
+}
+
+.errores{
+    color: red;
+}
+#deportes{
+    width: 70%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+}
+#deportes div{
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#crear:hover{
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.btn{
+    font-size: 25px;
+    background-color: transparent;
+    border: none;
+    justify-content: end;
+}
+
+#cancelar:hover{
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+}
+
+#creargrupo{
+    position: absolute;
+    display: flex;
+    width: 600px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background-color: white;
+    border-radius: 8px;
+}
 @media (max-width: 600px) {
     .grupo {
         width: 100%;

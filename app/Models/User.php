@@ -23,5 +23,8 @@ class User extends Authenticatable {
         'password' => 'hashed',
         'confirm_password' => 'hashed',
     ];
+    protected $fillable = [
+        'name', 'email', 'password', 'is_root',
+    ];
 }
 ?>

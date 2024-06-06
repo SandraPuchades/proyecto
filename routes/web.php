@@ -22,6 +22,7 @@ Route::view('/foro-page', "pages.foro")->middleware('auth')->name('foro');
 
 Route::post('/foro/{id?}',[EnviarController::class,'mostrar'] )->middleware('auth')->name('enviar');
 Route::post('/hilo/{id?}', [EnviarController::class,'enviar'])->middleware('auth')->name('enviarMensajeHilo');
+Route::delete('/eliminar/{id?}',[EnviarController::class,'eliminar'] )->middleware('auth')->name('eliminar');
 Route::get('/hilo/{id?}', [EnviarController::class,'mostarPadre'])->middleware('auth')->name('hilo');
 
 Route::view('/hilo-pages', "pages.hilo")->middleware('auth')->name('hiloPage');
@@ -35,6 +36,7 @@ Route::post('/eliminarEvento', [EventoController::class,'eliminarEvento'])->midd
 Route::get('/grupo-controller', [GruposController::class,'mostrarGruposUsuario'])->middleware('auth')->name('grupo');
 Route::view('/grupos', "pages.grupo")->middleware('auth')->name('grupos');
 Route::post('/unirse-grupo', [GruposController::class,'unirseGrupo'])->middleware('auth')->name('unirseGrupo');
+Route::post('/crearGrupo', [GruposController::class,'crearGrupo'])->middleware('auth')->name('crearGrupo');
 Route::post('/eliminarUsuarioGrupo', [GruposController::class,'eliminarUsuarioGrupo'])->middleware('auth')->name('eliminarUsuarioGrupo');
 
 Route::get('/user/{nombre}', [UsuariosController::class,'getDatosUsuario'])->middleware('auth')->name('user-name');
@@ -44,5 +46,8 @@ Route::get('/usercontroller', [UserController::class,'mostrarUsuario'])->middlew
 Route::view('/usuario', "pages.infouser")->middleware('auth')->name('viewusuario');
 
 Route::post('/modificarcontroller', [ModificarUserController::class,'modificarDatos'])->middleware('auth')->name('modificar');
+
+
+Route::view('/rutinas-pages', "pages.rutinas")->middleware('auth')->name('rutinas');
 
 ?>

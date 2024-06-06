@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/chat-style.css">
-    <script src="js/foro.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>TeamSports</title>
 </head>
@@ -27,6 +26,9 @@
 
                 <div class="time">
                     <a href="{{route('hilo', $mensaje->id)}}">Responder</a>
+                    @if (Auth::check() && Auth::user()->is_root)
+                        <button class="eliminar" data-id="{{ $mensaje->id }}">Eliminar</button>
+                    @endif
                     <p>{{ \Carbon\Carbon::parse($mensaje->time)->format('H:i') }}</p>
                 </div>
                 <hr>
@@ -52,6 +54,6 @@
     <footer>
         @include('footer')
     </footer>
-
+    <script src="js/foro.js"></script>
 </body>
 </html>

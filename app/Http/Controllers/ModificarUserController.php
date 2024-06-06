@@ -35,7 +35,7 @@ class ModificarUserController extends Controller
                 $updateDatos['date_birth'] = Auth::user()->date_birth;
             }
 
-            if ($request->filled('img')) {
+            if ($request->hasFile('img')) {
                 $imageName = time() . '.' . $request->img->extension();
                 $request->img->move(public_path('imagenes'), $imageName);
                 $updateDatos['image_path'] = $imageName;

@@ -47,6 +47,17 @@ class EnviarController extends Controller{
 
         return view('pages.hilo', compact('arrayMensajePadre','arrayMensajes'));
     }
+
+    public function eliminar($id){
+        $mensaje = Foro::find($id);
+
+        if ($mensaje) {
+            $mensaje->delete();
+            return response()->json(['success' => true, 'message' => 'Mensaje eliminado']);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Mensaje no encontrado']);
+    }
 }
 
 ?>

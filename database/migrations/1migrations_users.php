@@ -24,6 +24,7 @@ return new class extends Migration
                 $table->string('weight');
                 $table->string('operations');
                 $table->string('image_path')->nullable();
+                $table->boolean('is_root')->default(false);
                 $table->timestamps();
             });
 
@@ -38,6 +39,7 @@ return new class extends Migration
             $user->operations = 'si';
             $user->weight = '50';
             $user->image_path = 'usuario.jpg';
+            $user->is_root= true;
             $user->save();
         }
     }

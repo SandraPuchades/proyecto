@@ -15,8 +15,18 @@
         @include('nav')
     </nav>
     <main>
-        <div>
+        @if($errors->any())
+        <div class="errores">
+            @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
+        </div>
+        @endif
+        <div class="buttons">
             <p id="newgrupo">Unirme a un grupo</p>
+            @if (Auth::check() && Auth::user()->is_root)
+                <p id="creategroup">Botón exclusivo para root</p>
+            @endif
         </div>
         <div id="formulario">
             <form action="{{ route('unirseGrupo') }}" method="post">
@@ -28,6 +38,28 @@
                     @endforeach
                 </select>
                 <button id="unirse" type="submit">Unirse</button>
+            </form>
+        </div>
+        <div id="creargrupo">
+            <h3 id="modificar">Crear Grupo</h3>
+            <form id="deportes" action="{{ route('crearGrupo') }}" method="post">
+                @csrf
+                <div>
+                    <label for="deporte">Deporte</label>
+                    <input type="text" name="deporte" required>
+                </div>
+                <div>
+                    <label for="diasemana">Dia de la semana</label>
+                    <input type="text" name="diasemana" required>
+                </div>
+                <div>
+                    <label for="time">Hora</label>
+                    <input type="time" name="time" required>
+                </div>
+                <div>
+                    <button id="crear" class="btn" type="submit">Crear</button>
+                    <button id="cancelar" class="btn" type="button">Cancelar</button>
+                </div>
             </form>
         </div>
             <div id="infogrupos">
